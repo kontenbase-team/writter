@@ -14,6 +14,7 @@ import {
   IconButton,
   Button,
   Stack,
+  useColorModeValue,
 } from '@chakra-ui/react'
 import { FunctionComponent } from 'react'
 import { Link as RemixLink, useNavigate } from 'remix'
@@ -37,12 +38,19 @@ export const Container: FunctionComponent<ContainerProps> = ({
     navigate(-1)
   }
 
+  const borderColor = useColorModeValue('gray.300', 'gray.600')
+
   return (
     <ChakraContainer px={0} maxWidth="720px">
       <HStack align="flex-start">
         <NavigationSidebar />
 
-        <Box borderColor="gray.600" borderWidth={1} borderTop={0} width="100%">
+        <Box
+          borderColor={borderColor}
+          borderWidth={1}
+          borderTop={0}
+          width="100%"
+        >
           <HStack as="header" p={5} spacing={5}>
             {!isBackDisabled && (
               <IconButton

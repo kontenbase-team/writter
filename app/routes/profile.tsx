@@ -11,7 +11,7 @@ export const meta: MetaFunction = () => ({
 
 const Profile: FunctionComponent<ProfileProps> = () => (
   <Container headingText="Profile">
-    <p>Redirecting to profile page...</p>
+    <p>Redirecting to profile page is in progress...</p>
   </Container>
 )
 

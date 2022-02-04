@@ -1,4 +1,4 @@
-import { StackDivider, VStack, Text } from '@chakra-ui/react'
+import { StackDivider, VStack, Text, useColorModeValue } from '@chakra-ui/react'
 import { FunctionComponent } from 'react'
 import { Link as RemixLink } from 'remix'
 
@@ -11,19 +11,23 @@ interface WreetsTimelineProps {
 
 export const WreetsTimeline: FunctionComponent<WreetsTimelineProps> = ({
   wreets,
-}) => (
-  <VStack
-    divider={<StackDivider borderColor="gray.600" />}
-    spacing={0}
-    align="stretch"
-  >
-    {wreets.map((wreet) => (
-      <RemixLink
-        key={wreet._id}
-        to={`/${wreet?.createdBy?.handle}/${wreet?._id}`}
-      >
-        <WreetCard wreet={wreet} isLink />
-      </RemixLink>
-    ))}
-  </VStack>
-)
+}) => {
+  const borderColor = useColorModeValue('gray.300', 'gray.600')
+
+  return (
+    <VStack
+      divider={<StackDivider borderColor={borderColor} />}
+      spacing={0}
+      align="stretch"
+    >
+      {wreets.map((wreet) => (
+        <RemixLink
+          key={wreet._id}
+          to={`/${wreet?.createdBy?.handle}/${wreet?._id}`}
+        >
+          <WreetCard wreet={wreet} isLink />
+        </RemixLink>
+      ))}
+    </VStack>
+  )
+}
