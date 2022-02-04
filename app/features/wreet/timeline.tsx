@@ -1,5 +1,6 @@
 import { StackDivider, VStack, Text } from '@chakra-ui/react'
 import { FunctionComponent } from 'react'
+import { Link as RemixLink } from 'remix'
 
 import { WreetCard } from '~/features'
 import type { TWreet } from '~/types'
@@ -20,7 +21,12 @@ export const WreetsTimeline: FunctionComponent<WreetsTimelineProps> = ({
     align="stretch"
   >
     {wreets.map((wreet) => (
-      <WreetCard key={wreet._id} wreet={wreet} />
+      <RemixLink
+        key={wreet._id}
+        to={`/${wreet?.createdBy?.handle}/${wreet?._id}`}
+      >
+        <WreetCard wreet={wreet} />
+      </RemixLink>
     ))}
 
     <Text as="pre" fontSize="xs">

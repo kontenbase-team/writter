@@ -1,1 +1,1 @@
-export * from './wreets'
+export * from './wreet'
