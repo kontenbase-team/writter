@@ -10,6 +10,7 @@ import {
 } from 'remix'
 
 import type { MetaFunction } from 'remix'
+import { theme } from '~/chakra-ui'
 
 export const meta: MetaFunction = () => ({
   title: 'Writter',
@@ -18,7 +19,7 @@ export const meta: MetaFunction = () => ({
 export default function App() {
   return (
     <Document title="Writter">
-      <ChakraProvider>
+      <ChakraProvider theme={theme}>
         <Outlet />
       </ChakraProvider>
     </Document>
@@ -56,7 +57,7 @@ export function Document({
 export function ErrorBoundary({ error }: { error: Error }) {
   return (
     <Document title="Error!">
-      <ChakraProvider>
+      <ChakraProvider theme={theme}>
         <Box>
           <Heading as="h1">There was an error</Heading>
           <pre>{JSON.stringify(error, null, 2)}</pre>
@@ -71,7 +72,7 @@ export function CatchBoundary() {
 
   return (
     <Document title={`${caught.status} ${caught.statusText}`}>
-      <ChakraProvider>
+      <ChakraProvider theme={theme}>
         <Box>
           <Heading as="h1">
             {caught.status} {caught.statusText}
