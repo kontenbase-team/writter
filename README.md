@@ -9,6 +9,26 @@ A Twitter clone with [Remix](https://remix.run/docs) and [Kontenbase](https://ko
 [license]: https://github.com/kontenbase-team/writter/blob/main/LICENSE
 <!-- prettier-ignore-end -->
 
+## Features
+
+### What's ready
+
+- Index page
+- Home with timeline of Wreets (Tweets)
+- Link to go to Wreet page
+- View Wreet page
+- View user profile
+
+### What's not included
+
+- Follow other users
+- Filtered Wreet timeline
+- Comment or making a thread in a Wreet
+- Like a Wreet
+- ReWreet (retweet)
+- Bookmark
+- Copy link to Wreet
+
 ## Tech Stack
 
 - React
