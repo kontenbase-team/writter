@@ -1,7 +1,6 @@
 import {
   Button,
   FormControl,
-  FormHelperText,
   FormLabel,
   Input,
   InputGroup,
@@ -64,5 +63,3 @@ export const SignUpForm: FunctionComponent<SignUpFormProps> = () => {
     </Form>
   )
 }
-
-export default SignUpForm

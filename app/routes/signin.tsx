@@ -1,8 +1,9 @@
-import { Box, Text } from '@chakra-ui/react'
+import { Box, Heading, Stack, Text } from '@chakra-ui/react'
 import { FunctionComponent } from 'react'
 import { MetaFunction } from 'remix'
 
-import { Container } from '~/components'
+import { Container, Link } from '~/components'
+import { SignInForm } from '~/features'
 
 interface SignInProps {}
 
@@ -12,9 +13,15 @@ export const meta: MetaFunction = () => ({
 
 const SignUp: FunctionComponent<SignInProps> = () => (
   <Container headingText="Sign In">
-    <Box p={5}>
-      <Text>Sign in to your Writter account</Text>
-    </Box>
+    <Stack p={5} spacing={5}>
+      <Heading as="h2" size="lg">
+        Sign in to your Writter account
+      </Heading>
+      <SignInForm />
+      <Text>
+        New here? <Link to="/signup">Sign up</Link>
+      </Text>
+    </Stack>
   </Container>
 )
 

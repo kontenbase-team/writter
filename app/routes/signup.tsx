@@ -1,8 +1,8 @@
-import { Box, Heading, Stack, Text } from '@chakra-ui/react'
+import { Heading, Stack, Text } from '@chakra-ui/react'
 import { FunctionComponent } from 'react'
 import { MetaFunction } from 'remix'
 
-import { Container } from '~/components'
+import { Container, Link } from '~/components'
 import { SignUpForm } from '~/features'
 
 interface SignUpProps {}
@@ -18,6 +18,9 @@ const SignUp: FunctionComponent<SignUpProps> = () => (
         Create your new Writter account
       </Heading>
       <SignUpForm />
+      <Text>
+        Already have an account? <Link to="/signin">Sign in</Link>
+      </Text>
     </Stack>
   </Container>
 )
