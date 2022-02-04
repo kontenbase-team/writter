@@ -1,5 +1,7 @@
-import { Heading } from '@chakra-ui/react'
-import { Link, MetaFunction } from 'remix'
+import { Button, Heading, Stack } from '@chakra-ui/react'
+import { Link as RemixLink, MetaFunction } from 'remix'
+
+import { Container } from '~/components'
 
 export const meta: MetaFunction = () => ({
   title: 'Writter',
@@ -7,19 +9,16 @@ export const meta: MetaFunction = () => ({
 
 export default function Index() {
   return (
-    <div>
+    <Container>
       <Heading as="h1">Writter</Heading>
-      <ul>
-        <li>
-          <Link to="/">Index</Link>
-        </li>
-        <li>
-          <Link to="/home">Home</Link>
-        </li>
-        <li>
-          <Link to="/about">About</Link>
-        </li>
-      </ul>
-    </div>
+      <Stack>
+        <Button as={RemixLink} to="/home">
+          Home
+        </Button>
+        <Button as={RemixLink} to="/about">
+          About
+        </Button>
+      </Stack>
+    </Container>
   )
 }
