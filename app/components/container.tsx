@@ -16,6 +16,10 @@ import {
   Button,
   Stack,
   useColorModeValue,
+  useMediaQuery,
+  VStack,
+  Tooltip,
+  Flex,
 } from '@chakra-ui/react'
 import { FunctionComponent } from 'react'
 import { Link as RemixLink, useNavigate } from 'remix'
@@ -39,17 +43,19 @@ export const Container: FunctionComponent<ContainerProps> = ({
     navigate(-1)
   }
 
+  const [isMobile] = useMediaQuery('(max-width: 1024px)')
+
   const borderColor = useColorModeValue('gray.300', 'gray.600')
 
   return (
     <ChakraContainer px={0} maxWidth="720px">
-      <HStack align="flex-start">
-        <NavigationSidebar />
+      <Flex align="flex-start">
+        {isMobile ? <NavigationSidebarMobile /> : <NavigationSidebar />}
 
         <Box
-          borderColor={borderColor}
-          borderWidth={1}
           borderTop={0}
+          borderWidth={1}
+          borderColor={borderColor}
           width="100%"
         >
           <HStack as="header" p={5} spacing={5}>
@@ -71,7 +77,7 @@ export const Container: FunctionComponent<ContainerProps> = ({
 
           {children}
         </Box>
-      </HStack>
+      </Flex>
     </ChakraContainer>
   )
 }
@@ -135,54 +141,64 @@ export const NavigationSidebar = () => (
 )
 
 export const NavigationSidebarMobile = () => (
-  <Stack p={5} spacing={3}>
-    <RemixLink to="/">
-      <Image
-        boxSize="50px"
-        objectFit="contain"
-        src="/android-chrome-192x192.png"
-        alt="Writter Logo"
-      />
-    </RemixLink>
+  <VStack p={3} spacing={3} align="center">
+    <Tooltip label="Writter" aria-label="Writter">
+      <RemixLink to="/">
+        <Image
+          boxSize="40px"
+          objectFit="contain"
+          src="/android-chrome-192x192.png"
+          alt="Writter Logo"
+        />
+      </RemixLink>
+    </Tooltip>
 
     <ColorModeToggle />
 
-    <IconButton
-      as={RemixLink}
-      to="/home"
-      icon={<TimeIcon />}
-      variant="ghost"
-      borderRadius="full"
-      aria-label="Go to Home"
-    />
+    <Tooltip label="Home">
+      <IconButton
+        as={RemixLink}
+        to="/home"
+        icon={<TimeIcon />}
+        variant="ghost"
+        borderRadius="full"
+        aria-label="Go to Home"
+      />
+    </Tooltip>
 
-    <IconButton
-      as={RemixLink}
-      to="/profile"
-      icon={<SettingsIcon />}
-      variant="ghost"
-      borderRadius="full"
-      aria-label="Go to My Profile"
-    />
+    <Tooltip label="Profile">
+      <IconButton
+        as={RemixLink}
+        to="/profile"
+        icon={<SettingsIcon />}
+        variant="ghost"
+        borderRadius="full"
+        aria-label="Go to My Profile"
+      />
+    </Tooltip>
 
-    <IconButton
-      as={RemixLink}
-      to="/signin"
-      icon={<UnlockIcon />}
-      variant="solid"
-      colorScheme="red"
-      borderRadius="full"
-      aria-label="Sign in"
-    />
+    <Tooltip label="Sign In">
+      <IconButton
+        as={RemixLink}
+        to="/signin"
+        icon={<UnlockIcon />}
+        variant="solid"
+        colorScheme="red"
+        borderRadius="full"
+        aria-label="Sign in"
+      />
+    </Tooltip>
 
-    <IconButton
-      as={RemixLink}
-      to="/wreet"
-      icon={<EditIcon />}
-      variant="solid"
-      colorScheme="red"
-      borderRadius="full"
-      aria-label="Compose a new Wreet"
-    />
-  </Stack>
+    <Tooltip label="Wreet">
+      <IconButton
+        as={RemixLink}
+        to="/wreet"
+        icon={<EditIcon />}
+        variant="solid"
+        colorScheme="red"
+        borderRadius="full"
+        aria-label="Compose a new Wreet"
+      />
+    </Tooltip>
+  </VStack>
 )
