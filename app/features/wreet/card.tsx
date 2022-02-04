@@ -75,7 +75,7 @@ export const WreetCardDetailed: FunctionComponent<WreetCardDetailedProps> = ({
       <HStack
         as={RemixLink}
         to={`/${getUserHandle(user)}`}
-        spacing={5}
+        spacing={3}
         transition="opacity 0.25s ease-in-out"
         _hover={{ opacity: 0.8 }}
       >

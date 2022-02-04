@@ -3,6 +3,7 @@ import {
   EditIcon,
   SettingsIcon,
   TimeIcon,
+  UnlockIcon,
 } from '@chakra-ui/icons'
 import {
   Box,
@@ -111,6 +112,17 @@ export const NavigationSidebar = () => (
 
     <Button
       as={RemixLink}
+      to="/signin"
+      leftIcon={<UnlockIcon />}
+      variant="solid"
+      colorScheme="red"
+      borderRadius="full"
+    >
+      Sign In
+    </Button>
+
+    <Button
+      as={RemixLink}
       to="/wreet"
       leftIcon={<EditIcon />}
       variant="solid"
@@ -119,5 +131,58 @@ export const NavigationSidebar = () => (
     >
       Wreet
     </Button>
+  </Stack>
+)
+
+export const NavigationSidebarMobile = () => (
+  <Stack p={5} spacing={3}>
+    <RemixLink to="/">
+      <Image
+        boxSize="50px"
+        objectFit="contain"
+        src="/android-chrome-192x192.png"
+        alt="Writter Logo"
+      />
+    </RemixLink>
+
+    <ColorModeToggle />
+
+    <IconButton
+      as={RemixLink}
+      to="/home"
+      icon={<TimeIcon />}
+      variant="ghost"
+      borderRadius="full"
+      aria-label="Go to Home"
+    />
+
+    <IconButton
+      as={RemixLink}
+      to="/profile"
+      icon={<SettingsIcon />}
+      variant="ghost"
+      borderRadius="full"
+      aria-label="Go to My Profile"
+    />
+
+    <IconButton
+      as={RemixLink}
+      to="/signin"
+      icon={<UnlockIcon />}
+      variant="solid"
+      colorScheme="red"
+      borderRadius="full"
+      aria-label="Sign in"
+    />
+
+    <IconButton
+      as={RemixLink}
+      to="/wreet"
+      icon={<EditIcon />}
+      variant="solid"
+      colorScheme="red"
+      borderRadius="full"
+      aria-label="Compose a new Wreet"
+    />
   </Stack>
 )

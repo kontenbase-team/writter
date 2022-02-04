@@ -12,6 +12,8 @@ export const ColorModeToggle: FunctionComponent<ColorModeToggleProps> = () => {
       onClick={toggleColorMode}
       aria-label="Toggle color mode"
       icon={colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
+      variant="ghost"
+      borderRadius="full"
     />
   )
 }
