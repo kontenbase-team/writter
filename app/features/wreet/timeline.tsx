@@ -13,9 +13,6 @@ export const WreetsTimeline: FunctionComponent<WreetsTimelineProps> = ({
   wreets,
 }) => (
   <VStack
-    borderColor="gray.600"
-    borderWidth={1}
-    borderRadius={5}
     divider={<StackDivider borderColor="gray.600" />}
     spacing={0}
     align="stretch"
@@ -25,7 +22,7 @@ export const WreetsTimeline: FunctionComponent<WreetsTimelineProps> = ({
         key={wreet._id}
         to={`/${wreet?.createdBy?.handle}/${wreet?._id}`}
       >
-        <WreetCard wreet={wreet} />
+        <WreetCard wreet={wreet} isLink />
       </RemixLink>
     ))}
 
