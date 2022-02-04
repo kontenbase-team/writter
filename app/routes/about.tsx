@@ -1,8 +1,8 @@
-import { Box, Text, Link as ChakraLink } from '@chakra-ui/react'
+import { Box, Text } from '@chakra-ui/react'
 import { FunctionComponent } from 'react'
 import { MetaFunction } from 'remix'
 
-import { Container } from '~/components'
+import { Container, Anchor } from '~/components'
 
 interface AboutProps {}
 
@@ -15,13 +15,20 @@ const About: FunctionComponent<AboutProps> = () => (
     <Box p={5}>
       <Text>
         Writter is a Twitter clone made with{' '}
-        <ChakraLink isExternal color="brand.500" href="https://remix.run">
-          Remix
-        </ChakraLink>{' '}
-        and{' '}
-        <ChakraLink isExternal color="brand.500" href="https://kontenbase.com">
-          Kontenbase
-        </ChakraLink>
+        <Anchor href="https://remix.run">Remix</Anchor> and{' '}
+        <Anchor href="https://kontenbase.com">Kontenbase</Anchor>
+      </Text>
+      <Text>
+        GitHub repository:{' '}
+        <Anchor href="https://github.com/kontenbase-team/writter">
+          github.com/kontenbase-team/writter
+        </Anchor>
+      </Text>
+      <Text>
+        Deployed on Vercel:{' '}
+        <Anchor href="https://writter.kontenbase.com">
+          writter.kontenbase.com
+        </Anchor>
       </Text>
     </Box>
   </Container>

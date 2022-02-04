@@ -70,9 +70,7 @@ export const WreetCardDetailed: FunctionComponent<WreetCardDetailedProps> = ({
       p={5}
       spacing={5}
       transition="background 0.25s ease-in-out"
-      _hover={{
-        bg: isLink && 'gray.700',
-      }}
+      _hover={{ bg: isLink && 'gray.700' }}
     >
       <HStack
         as={RemixLink}
