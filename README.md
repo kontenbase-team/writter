@@ -1,6 +1,28 @@
-# Welcome to Remix!
+# Writter
 
-- [Remix Docs](https://remix.run/docs)
+A Twitter clone with [Remix](https://remix.run/docs) and [Kontenbase](https://kontenbase.com)
+
+[![MIT License][license-badge]][license]
+
+<!-- prettier-ignore-start -->
+[license-badge]: https://img.shields.io/badge/license-MIT-red.svg?style=flat-square
+[license]: https://github.com/kontenbase-team/writter/blob/main/LICENSE
+<!-- prettier-ignore-end -->
+
+## Tech Stack
+
+- React
+  - HTML
+  - CSS
+  - JavaScript
+  - TypeScript
+- Remix
+  - React Router
+- Stitches
+- Radix UI
+  - Radix Colors
+- Vercel
+- Cloudflare DNS
 
 ## Deployment
 

@@ -4,13 +4,15 @@ import {
   Meta,
   Outlet,
   Scripts,
-  ScrollRestoration
-} from "remix";
-import type { MetaFunction } from "remix";
+  ScrollRestoration,
+} from 'remix'
+import type { MetaFunction } from 'remix'
 
 export const meta: MetaFunction = () => {
-  return { title: "New Remix App" };
-};
+  return {
+    title: 'Writter',
+  }
+}
 
 export default function App() {
   return (
@@ -21,12 +23,13 @@ export default function App() {
         <Meta />
         <Links />
       </head>
+
       <body>
         <Outlet />
         <ScrollRestoration />
         <Scripts />
-        {process.env.NODE_ENV === "development" && <LiveReload />}
+        {process.env.NODE_ENV === 'development' && <LiveReload />}
       </body>
     </html>
-  );
+  )
 }
