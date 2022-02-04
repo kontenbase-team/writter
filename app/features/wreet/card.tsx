@@ -6,6 +6,7 @@ import {
   Avatar,
   HStack,
   Stack,
+  Flex,
 } from '@chakra-ui/react'
 import { FunctionComponent } from 'react'
 import { Link as RemixLink } from 'remix'
@@ -41,7 +42,7 @@ export const WreetCard: FunctionComponent<WreetCardProps> = ({
       <HStack spacing={5} align="flex-start">
         <Avatar name={getUserName(user)} />
         <Box>
-          <HStack>
+          <Flex flexWrap="wrap" gap={[0, 3]}>
             <chakra.span size="sm" fontWeight="bold">
               {getUserName(user)}
             </chakra.span>
@@ -50,7 +51,7 @@ export const WreetCard: FunctionComponent<WreetCardProps> = ({
               <span> · </span>
               <span>{getRelativeDate(wreet?.createdAt)}</span>
             </chakra.span>
-          </HStack>
+          </Flex>
 
           <Text mt={1}>{wreet?.content}</Text>
         </Box>
@@ -72,10 +73,11 @@ export const WreetCardDetailed: FunctionComponent<WreetCardDetailedProps> = ({
       transition="background 0.25s ease-in-out"
       _hover={{ bg: isLink && 'gray.700' }}
     >
-      <HStack
+      <Flex
         as={RemixLink}
         to={`/${getUserHandle(user)}`}
-        spacing={3}
+        gap={3}
+        flexWrap="wrap"
         transition="opacity 0.25s ease-in-out"
         _hover={{ opacity: 0.8 }}
       >
@@ -88,7 +90,7 @@ export const WreetCardDetailed: FunctionComponent<WreetCardDetailedProps> = ({
             @{user?.handle}
           </chakra.span>
         </Stack>
-      </HStack>
+      </Flex>
 
       <Text mt={1} fontSize="3xl">
         {wreet?.content}
