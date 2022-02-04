@@ -1,7 +1,8 @@
-import { Container, Heading } from '@chakra-ui/react'
+import { Heading } from '@chakra-ui/react'
 import { FunctionComponent } from 'react'
 import { json, LoaderFunction, MetaFunction, useLoaderData } from 'remix'
 
+import { Container } from '~/components'
 import { WreetsTimeline } from '~/features'
 import { kontenbase } from '~/lib'
 
@@ -25,7 +26,7 @@ const Home: FunctionComponent<HomeProps> = () => {
   const wreets = useLoaderData()
 
   return (
-    <Container maxWidth="600px">
+    <Container>
       <Heading as="h1">Home</Heading>
       {wreets && <WreetsTimeline wreets={wreets} />}
     </Container>
