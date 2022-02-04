@@ -7,7 +7,13 @@ interface WreetComposerProps {}
 export const WreetComposer: FunctionComponent<WreetComposerProps> = () => (
   <Form>
     <Stack p={5} align="flex-end">
-      <Textarea placeholder="What's happening?" />
+      <Textarea
+        isRequired
+        placeholder="What's happening?"
+        variant="unstyled"
+        fontSize="2xl"
+        minHeight="150px"
+      />
       <Button type="submit" colorScheme="red" borderRadius="full">
         Wreet
       </Button>

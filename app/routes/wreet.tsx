@@ -12,7 +12,6 @@ export const meta: MetaFunction = () => ({
 
 const ComposeNewWreet: FunctionComponent<ComposeNewWreetProps> = () => (
   <Container headingText="Compose">
-    <p>Compose new Wreet</p>
     <WreetComposer />
   </Container>
 )
