@@ -1,7 +1,8 @@
-import { Heading } from '@chakra-ui/react'
+import { Container, Heading } from '@chakra-ui/react'
 import { FunctionComponent } from 'react'
-import { LoaderFunction, MetaFunction, useLoaderData } from 'remix'
+import { json, LoaderFunction, MetaFunction, useLoaderData } from 'remix'
 
+import { WreetsTimeline } from '~/features'
 import { kontenbase } from '~/lib'
 
 interface HomeProps {}
@@ -13,20 +14,21 @@ export const meta: MetaFunction = () => ({
 export const loader: LoaderFunction = async () => {
   const { data, error } = await kontenbase.service('wreets').find()
 
-  return {
-    wreets: data,
-    error,
+  if (error) {
+    return json({ error })
   }
+
+  return json(data)
 }
 
 const Home: FunctionComponent<HomeProps> = () => {
-  const data = useLoaderData()
+  const wreets = useLoaderData()
 
   return (
-    <div>
+    <Container>
       <Heading as="h1">Home</Heading>
-      <pre>{JSON.stringify(data, null, 2)}</pre>
-    </div>
+      {wreets && <WreetsTimeline wreets={wreets} />}
+    </Container>
   )
 }
 
