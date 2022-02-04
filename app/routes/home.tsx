@@ -8,7 +8,7 @@ import { kontenbase } from '~/lib'
 interface HomeProps {}
 
 export const meta: MetaFunction = () => ({
-  title: 'Home - Writter',
+  title: 'Home / Writter',
 })
 
 export const loader: LoaderFunction = async () => {

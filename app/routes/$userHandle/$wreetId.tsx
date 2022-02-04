@@ -1,11 +1,23 @@
 import { Container, Heading } from '@chakra-ui/react'
 import { FunctionComponent } from 'react'
-import { json, LoaderFunction, useLoaderData } from 'remix'
+import { json, LoaderFunction, MetaFunction, useLoaderData } from 'remix'
 
 import { WreetCard } from '~/features'
 import { kontenbase } from '~/lib'
+import { getTrimmedWreet, getUserName } from '~/utils'
 
 interface UserWreetIdProps {}
+
+export const meta: MetaFunction = ({ data }) => {
+  const wreet = data.data
+  const user = data.data.createdBy
+
+  return {
+    title: `${getUserName(user)} on Writter: "${getTrimmedWreet(
+      wreet.content
+    )}"`,
+  }
+}
 
 export const loader: LoaderFunction = async ({ params }) => {
   const { data, error } = await kontenbase

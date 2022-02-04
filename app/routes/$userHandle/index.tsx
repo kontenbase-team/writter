@@ -1,34 +1,43 @@
 import { Container } from '@chakra-ui/react'
 import { FunctionComponent } from 'react'
-import { json, LoaderFunction, useLoaderData } from 'remix'
+import { json, LoaderFunction, MetaFunction, useLoaderData } from 'remix'
 
+import { UserProfile } from '~/features'
 import { kontenbase } from '~/lib'
+import { getUserName } from '~/utils'
 
-interface UserProfileProps {}
+interface UserHandlePageProps {}
+
+export const meta: MetaFunction = ({ data }) => ({
+  title: `${getUserName(data.data)} (@${data.data.handle}) / Writter`,
+})
 
 export const loader: LoaderFunction = async ({ params }) => {
-  const { data, error } = await kontenbase.service('Users').find({
-    where: { handle: params?.userHandle as string },
-  })
-
-  if (error) {
-    return json({ error }, { status: 404 })
+  try {
+    const { data, error } = await kontenbase.service('Users').find({
+      where: { handle: params?.userHandle as string },
+    })
+    if (error) {
+      return json({ error }, { status: 404 })
+    }
+    return json({
+      data: data?.[0],
+      error,
+    })
+  } catch (error) {
+    return json({ error }, { status: 500 })
   }
-  return json({
-    data,
-    error,
-  })
 }
 
-const UserProfile: FunctionComponent<UserProfileProps> = () => {
+const UserHandlePage: FunctionComponent<UserHandlePageProps> = () => {
   const { data, error } = useLoaderData()
 
   return (
     <Container>
-      {data && <pre>{JSON.stringify(data, null, 2)}</pre>}
+      {data && <UserProfile user={data} />}
       {error && <p>Error: User Profile {error?.message}</p>}
     </Container>
   )
 }
 
-export default UserProfile
+export default UserHandlePage
