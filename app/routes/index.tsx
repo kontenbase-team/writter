@@ -9,7 +9,7 @@ export const meta: MetaFunction = () => ({
 
 export default function Index() {
   return (
-    <Container headingText="Writter">
+    <Container headingText="Writter" isBackDisabled>
       <Stack p={5}>
         <Button as={RemixLink} to="/home">
           Home
