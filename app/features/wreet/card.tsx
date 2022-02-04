@@ -53,8 +53,6 @@ export const WreetCard: FunctionComponent<WreetCardProps> = ({
           </HStack>
 
           <Text mt={1}>{wreet?.content}</Text>
-          <Text mt={1}>{wreet?.content}</Text>
-          <Text mt={1}>{wreet?.content}</Text>
         </Box>
       </HStack>
     </Box>
