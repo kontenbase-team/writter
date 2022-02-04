@@ -25,9 +25,5 @@ export const WreetsTimeline: FunctionComponent<WreetsTimelineProps> = ({
         <WreetCard wreet={wreet} isLink />
       </RemixLink>
     ))}
-
-    <Text as="pre" fontSize="xs">
-      {JSON.stringify(wreets, null, 2)}
-    </Text>
   </VStack>
 )
