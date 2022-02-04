@@ -7,15 +7,15 @@ import { Container, Anchor } from '~/components'
 interface AboutProps {}
 
 export const meta: MetaFunction = () => ({
-  title: 'About - Writter',
+  title: 'About Writter / Open source Twitter clone',
 })
 
 const About: FunctionComponent<AboutProps> = () => (
   <Container headingText="About">
     <Box p={5}>
       <Text>
-        Writter is a Twitter clone made with{' '}
-        <Anchor href="https://remix.run">Remix</Anchor> and{' '}
+        Writter is a <Anchor href="https://twitter.com">Twitter</Anchor> clone
+        made with <Anchor href="https://remix.run">Remix</Anchor> and{' '}
         <Anchor href="https://kontenbase.com">Kontenbase</Anchor>
       </Text>
       <Text>

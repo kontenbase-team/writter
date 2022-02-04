@@ -11,6 +11,15 @@ export default function Index() {
   return (
     <Container headingText="Writter" isBackDisabled>
       <Stack p={5}>
+        <Button as={RemixLink} to="/signup">
+          Sign Up
+        </Button>
+        <Button as={RemixLink} to="/signin">
+          Sign In
+        </Button>
+        <Button as={RemixLink} to="/signout">
+          Sign Out
+        </Button>
         <Button as={RemixLink} to="/home">
           Home
         </Button>
