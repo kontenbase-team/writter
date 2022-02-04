@@ -6,13 +6,12 @@ import {
   Scripts,
   ScrollRestoration,
 } from 'remix'
+
 import type { MetaFunction } from 'remix'
 
-export const meta: MetaFunction = () => {
-  return {
-    title: 'Writter',
-  }
-}
+export const meta: MetaFunction = () => ({
+  title: 'Writter',
+})
 
 export default function App() {
   return (

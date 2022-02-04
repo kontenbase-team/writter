@@ -1,0 +1,5 @@
+.cache
+.vscode
+api/_build/
+node_modules/
+public/
