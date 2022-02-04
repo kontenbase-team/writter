@@ -1,3 +1,4 @@
+import { Box } from '@chakra-ui/react'
 import { FunctionComponent } from 'react'
 import { MetaFunction } from 'remix'
 
@@ -11,7 +12,9 @@ export const meta: MetaFunction = () => ({
 
 const Profile: FunctionComponent<ProfileProps> = () => (
   <Container headingText="Profile">
-    <p>Redirecting to profile page is in progress...</p>
+    <Box p={5}>
+      <p>Redirecting to profile page is in progress...</p>
+    </Box>
   </Container>
 )
 

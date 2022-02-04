@@ -1,4 +1,4 @@
-import { StackDivider, VStack, Text, useColorModeValue } from '@chakra-ui/react'
+import { StackDivider, VStack, useColorModeValue } from '@chakra-ui/react'
 import { FunctionComponent } from 'react'
 import { Link as RemixLink } from 'remix'
 
