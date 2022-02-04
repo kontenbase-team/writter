@@ -13,12 +13,12 @@ import type { MetaFunction } from 'remix'
 import { theme } from '~/chakra-ui'
 
 export const meta: MetaFunction = () => ({
-  title: 'Writter',
+  title: 'Writter Root',
 })
 
 export default function App() {
   return (
-    <Document title="Writter">
+    <Document>
       <ChakraProvider theme={theme}>
         <Outlet />
       </ChakraProvider>
@@ -38,7 +38,7 @@ export function Document({
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width,initial-scale=1" />
-        <title>{title || 'Writter'}</title>
+        {title && <title>{title}</title>}
         <Meta />
         <Links />
       </head>
