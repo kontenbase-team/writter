@@ -76,7 +76,7 @@ export const Container: FunctionComponent<ContainerProps> = ({
 }
 
 export const NavigationSidebar = () => (
-  <Stack p={5}>
+  <Stack p={5} spacing={3}>
     <HStack spacing={5} justify="space-between">
       <RemixLink to="/">
         <Image
@@ -89,23 +89,33 @@ export const NavigationSidebar = () => (
       <ColorModeToggle />
     </HStack>
 
-    <Button as={RemixLink} to="/home" leftIcon={<TimeIcon />} variant="ghost">
+    <Button
+      as={RemixLink}
+      to="/home"
+      leftIcon={<TimeIcon />}
+      variant="ghost"
+      borderRadius="full"
+    >
       Home
     </Button>
+
     <Button
       as={RemixLink}
       to="/profile"
       leftIcon={<SettingsIcon />}
       variant="ghost"
+      borderRadius="full"
     >
       Profile
     </Button>
+
     <Button
       as={RemixLink}
       to="/wreet"
       leftIcon={<EditIcon />}
       variant="solid"
       colorScheme="red"
+      borderRadius="full"
     >
       Wreet
     </Button>
