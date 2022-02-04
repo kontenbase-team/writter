@@ -1,3 +1,5 @@
+import dayjs from 'dayjs'
+
 export type TWreet = {
   _id: string
   content: string
@@ -12,3 +14,7 @@ export type TUser = {
   name?: string
   handle?: string
 }
+
+export type TDate = string | number | dayjs.Dayjs | Date | null | undefined
+
+export type TLocale = string | 'en'
