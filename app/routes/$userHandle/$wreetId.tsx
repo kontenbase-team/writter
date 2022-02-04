@@ -1,8 +1,9 @@
-import { Container, Heading } from '@chakra-ui/react'
+import { Heading } from '@chakra-ui/react'
 import { FunctionComponent } from 'react'
 import { json, LoaderFunction, MetaFunction, useLoaderData } from 'remix'
 
-import { WreetCard } from '~/features'
+import { Container } from '~/components'
+import { WreetCardDetailed } from '~/features'
 import { kontenbase } from '~/lib'
 import { getTrimmedWreet, getUserName } from '~/utils'
 
@@ -39,8 +40,8 @@ const UserWreetId: FunctionComponent<UserWreetIdProps> = () => {
   return (
     <Container>
       <Heading as="h1">Wreet</Heading>
-      {data && <WreetCard wreet={data} />}
-      {error && <p>Error: Wreet {error?.message}</p>}
+      {data && <WreetCardDetailed wreet={data} />}
+      {error && <p>Error: Detailed Wreet {error?.message}</p>}
     </Container>
   )
 }
