@@ -25,7 +25,7 @@ const Home: FunctionComponent<HomeProps> = () => {
   const wreets = useLoaderData()
 
   return (
-    <Container>
+    <Container maxWidth="600px">
       <Heading as="h1">Home</Heading>
       {wreets && <WreetsTimeline wreets={wreets} />}
     </Container>
