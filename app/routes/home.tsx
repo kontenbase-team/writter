@@ -26,8 +26,7 @@ const Home: FunctionComponent<HomeProps> = () => {
   const wreets = useLoaderData()
 
   return (
-    <Container>
-      <Heading as="h1">Home</Heading>
+    <Container headingText="Home">
       {wreets && <WreetsTimeline wreets={wreets} />}
     </Container>
   )

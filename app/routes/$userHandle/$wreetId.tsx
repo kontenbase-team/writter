@@ -38,8 +38,7 @@ const UserWreetId: FunctionComponent<UserWreetIdProps> = () => {
   const { data, error } = useLoaderData()
 
   return (
-    <Container>
-      <Heading as="h1">Wreet</Heading>
+    <Container headingText="Wreet">
       {data && <WreetCardDetailed wreet={data} />}
       {error && <p>Error: Detailed Wreet {error?.message}</p>}
     </Container>

@@ -1,4 +1,4 @@
-import { Button, Heading, Stack } from '@chakra-ui/react'
+import { Button, Stack } from '@chakra-ui/react'
 import { Link as RemixLink, MetaFunction } from 'remix'
 
 import { Container } from '~/components'
@@ -9,9 +9,8 @@ export const meta: MetaFunction = () => ({
 
 export default function Index() {
   return (
-    <Container>
-      <Heading as="h1">Writter</Heading>
-      <Stack>
+    <Container headingText="Writter">
+      <Stack p={5}>
         <Button as={RemixLink} to="/home">
           Home
         </Button>

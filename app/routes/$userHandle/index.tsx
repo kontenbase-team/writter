@@ -1,7 +1,7 @@
-import { Container } from '@chakra-ui/react'
 import { FunctionComponent } from 'react'
 import { json, LoaderFunction, MetaFunction, useLoaderData } from 'remix'
 
+import { Container } from '~/components'
 import { UserProfile } from '~/features'
 import { kontenbase } from '~/lib'
 import { getUserName } from '~/utils'
@@ -33,7 +33,7 @@ const UserHandlePage: FunctionComponent<UserHandlePageProps> = () => {
   const { data, error } = useLoaderData()
 
   return (
-    <Container>
+    <Container headingText={getUserName(data)}>
       {data && <UserProfile user={data} />}
       {error && <p>Error: User Profile {error?.message}</p>}
     </Container>
