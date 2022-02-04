@@ -19,7 +19,7 @@ export const getCompleteDate = (date: TDate) =>
   dayjs(date).format('D MMMM YYYY')
 
 export const getCompleteDateTime = (date: TDate) =>
-  dayjs(date).format('D MMMM YYYY HH:mm')
+  dayjs(date).format('D MMMM YYYY · HH:mm')
 
 export const getDayPeriod = () => {
   const hour = Number(dayjs().format('H'))
