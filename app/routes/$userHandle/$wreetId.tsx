@@ -1,4 +1,4 @@
-import { Heading } from '@chakra-ui/react'
+import { Box, Heading } from '@chakra-ui/react'
 import { FunctionComponent } from 'react'
 import { json, LoaderFunction, MetaFunction, useLoaderData } from 'remix'
 
@@ -10,37 +10,36 @@ import { getTrimmedWreet, getUserName } from '~/utils'
 interface UserWreetIdProps {}
 
 export const meta: MetaFunction = ({ data }) => {
-  const wreet = data.data
-  const user = data.data.createdBy
+  const wreet = data?.wreet
+  const user = data?.wreet?.createdBy
 
   return {
     title: `${getUserName(user)} on Writter: "${getTrimmedWreet(
-      wreet.content
+      wreet?.content
     )}"`,
   }
 }
 
 export const loader: LoaderFunction = async ({ params }) => {
-  const { data, error } = await kontenbaseServer
+  const { data: wreet, error } = await kontenbaseServer
     .service('wreets')
     .getById(params?.wreetId as string)
 
-  if (error) {
-    return json({ error }, { status: 404 })
-  }
-  return json({
-    data,
-    error,
-  })
+  if (error) return json({ error }, { status: 404 })
+  return json({ wreet, error })
 }
 
 const UserWreetId: FunctionComponent<UserWreetIdProps> = () => {
-  const { data, error } = useLoaderData()
+  const { wreet, error } = useLoaderData()
 
   return (
     <Container headingText="Wreet">
-      {data && <WreetCardDetailed wreet={data} />}
-      {error && <p>Error: Detailed Wreet {error?.message}</p>}
+      {wreet && <WreetCardDetailed wreet={wreet} />}
+      {error && (
+        <Box p={3}>
+          <p>Error: Detailed Wreet {error?.message}</p>
+        </Box>
+      )}
     </Container>
   )
 }
