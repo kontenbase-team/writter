@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import {
   chakra,
   Link as ChakraLink,
@@ -13,7 +14,7 @@ import { FunctionComponent } from 'react'
 import { Form, Link as RemixLink } from 'remix'
 
 import { getCompleteDateTime, getRelativeDate } from '~/lib'
-import type { TWreet } from '~/types'
+import type { TUser, TWreet } from '~/types'
 import { getUserHandle, getUserName, getWreetURL } from '~/utils'
 
 interface WreetCardProps {
@@ -23,6 +24,8 @@ interface WreetCardProps {
 
 interface WreetCardDetailedProps {
   wreet: TWreet
+  user?: TUser
+  transition?: any
   isLink?: boolean
 }
 
@@ -62,10 +65,13 @@ export const WreetCard: FunctionComponent<WreetCardProps> = ({
 }
 
 export const WreetCardDetailed: FunctionComponent<WreetCardDetailedProps> = ({
+  user,
   wreet,
+  transition,
   isLink,
 }) => {
-  const user = wreet?.createdBy
+  const wreetOwner = wreet?.createdBy
+  const isOwned = user?._id === wreetOwner?._id
 
   return (
     <Stack
@@ -76,19 +82,19 @@ export const WreetCardDetailed: FunctionComponent<WreetCardDetailedProps> = ({
     >
       <Flex
         as={RemixLink}
-        to={`/${getUserHandle(user)}`}
+        to={`/${getUserHandle(wreetOwner)}`}
         gap={3}
         flexWrap="wrap"
         transition="opacity 0.25s ease-in-out"
         _hover={{ opacity: 0.8 }}
       >
-        <Avatar name={getUserName(user)} />
+        <Avatar name={getUserName(wreetOwner)} />
         <Stack spacing={0}>
           <chakra.span size="sm" fontWeight="bold">
-            {getUserName(user)}
+            {getUserName(wreetOwner)}
           </chakra.span>
           <chakra.span size="sm" color="gray.500">
-            @{user?.handle}
+            @{wreetOwner?.handle}
           </chakra.span>
         </Stack>
       </Flex>
@@ -101,12 +107,28 @@ export const WreetCardDetailed: FunctionComponent<WreetCardDetailedProps> = ({
         <ChakraLink as={RemixLink} to={getWreetURL(wreet)}>
           <chakra.span>{getCompleteDateTime(wreet?.createdAt)}</chakra.span>
         </ChakraLink>
-        <Form method="post">
-          <input type="hidden" name="_method" value="delete" />
-          <Button type="submit" colorScheme="red" variant="ghost" size="xs">
-            Delete
-          </Button>
-        </Form>
+
+        {isOwned && (
+          <Form method="post">
+            <input type="hidden" name="_method" value="delete" />
+            <Button
+              type="submit"
+              colorScheme="red"
+              variant="ghost"
+              size="xs"
+              isLoading={transition.state === 'submitting'}
+              loadingText={
+                transition.state === 'submitting'
+                  ? 'Deleting...'
+                  : transition.state === 'loading'
+                  ? 'Deleted!'
+                  : 'Delete'
+              }
+            >
+              Delete
+            </Button>
+          </Form>
+        )}
       </HStack>
     </Stack>
   )

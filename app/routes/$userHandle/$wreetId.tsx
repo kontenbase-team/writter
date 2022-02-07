@@ -1,4 +1,4 @@
-import { Box, Stack } from '@chakra-ui/react'
+import { Stack } from '@chakra-ui/react'
 import { FunctionComponent } from 'react'
 import {
   ActionFunction,
@@ -7,6 +7,7 @@ import {
   MetaFunction,
   redirect,
   useLoaderData,
+  useTransition,
 } from 'remix'
 
 import { Container } from '~/components'
@@ -28,43 +29,57 @@ export const meta: MetaFunction = ({ data }) => {
   }
 }
 
-export const loader: LoaderFunction = async ({ params }) => {
+export const loader: LoaderFunction = async ({ request, params }) => {
+  const user = await authenticator.isAuthenticated(request)
+
   const { data: wreet, error } = await kontenbaseServer
     .service('wreets')
     .getById(params?.wreetId as string)
 
   if (error) return json({ error }, { status: 404 })
-  if (!wreet) return json({ error: 'Wreet not found' }, { status: 404 })
-  return json({ wreet, error })
+  if (!wreet) return json({ user, error: 'Wreet not found' }, { status: 404 })
+  return json({ user, wreet, error })
 }
 
 export const action: ActionFunction = async ({ request, params }) => {
   const user = await authenticator.isAuthenticated(request)
   const headers = new Headers({ Authorization: `Bearer ${user?.token}` })
-
   const form = await request.formData()
 
-  if (form.get('_method') === 'delete') {
+  // Find about this Wreet, especially the owner
+  const { data: wreet, error: wreetError } = await kontenbaseServer
+    .service('wreets')
+    .getById(params?.wreetId as string)
+
+  if (wreetError) return json({ error: wreetError }, { status: 400 })
+
+  // Only the owner of the Wreet can do something
+  const isOwned = user?._id === wreet?.createdBy?._id
+  const isMethodDelete = form.get('_method') === 'delete'
+
+  if (isOwned && isMethodDelete) {
     try {
       const url = `${process.env.KONTENBASE_API_URL}/wreets/${params.wreetId}`
-      console.log({ url })
       const response = await fetch(url, { headers, method: 'DELETE' })
       await response.json()
       return redirect(`/home`, { headers })
     } catch (error) {
-      return json({ error }, { status: 404 })
+      return json({ user, error }, { status: 404 })
     }
-  } else {
-    return null
   }
+
+  return null
 }
 
 const UserWreetId: FunctionComponent<UserWreetIdProps> = () => {
-  const { wreet, error } = useLoaderData()
+  const { user, wreet, error } = useLoaderData()
+  const transition = useTransition()
 
   return (
     <Container headingText="Wreet">
-      {wreet && !error && <WreetCardDetailed wreet={wreet} />}
+      {wreet && !error && (
+        <WreetCardDetailed wreet={wreet} user={user} transition={transition} />
+      )}
       {(!wreet || error) && (
         <Stack p={3}>
           {!wreet && <p>Sorry, wreet not found</p>}
