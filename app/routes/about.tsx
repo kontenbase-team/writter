@@ -1,4 +1,4 @@
-import { Box, Text } from '@chakra-ui/react'
+import { Stack, Text } from '@chakra-ui/react'
 import { FunctionComponent } from 'react'
 import { MetaFunction } from 'remix'
 
@@ -12,7 +12,7 @@ export const meta: MetaFunction = () => ({
 
 const About: FunctionComponent<AboutProps> = () => (
   <Container headingText="About">
-    <Box p={5}>
+    <Stack p={5}>
       <Text>
         Writter is a <Anchor href="https://twitter.com">Twitter</Anchor> clone
         made with <Anchor href="https://remix.run">Remix</Anchor> and{' '}
@@ -30,7 +30,7 @@ const About: FunctionComponent<AboutProps> = () => (
           writter.kontenbase.com
         </Anchor>
       </Text>
-    </Box>
+    </Stack>
   </Container>
 )
 
