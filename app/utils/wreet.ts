@@ -1,6 +1,5 @@
-import { getUserHandle } from '.'
-
 import { TWreet } from '~/types'
+import { getUserHandle } from '~/utils'
 
 export const getWreetURL = (wreet: TWreet) =>
   `/${getUserHandle(wreet?.createdBy)}/${wreet?._id}`

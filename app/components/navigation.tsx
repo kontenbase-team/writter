@@ -5,7 +5,7 @@ import {
   TimeIcon,
   UnlockIcon,
 } from '@chakra-ui/icons'
-import { Image, HStack, Button, Stack } from '@chakra-ui/react'
+import { Image, HStack, Button, Stack, VStack } from '@chakra-ui/react'
 import { FunctionComponent } from 'react'
 import { Link as RemixLink } from 'remix'
 
@@ -16,18 +16,19 @@ interface NavigationProps {
 }
 
 export const Navigation: FunctionComponent<NavigationProps> = ({ user }) => (
-  <Stack p={5} spacing={3}>
-    <HStack spacing={5} justify="space-between">
-      <RemixLink to="/">
-        <Image
-          boxSize="50px"
-          objectFit="contain"
-          src="/android-chrome-192x192.png"
-          alt="Writter Logo"
-        />
-      </RemixLink>
-      <ColorModeToggle />
-    </HStack>
+  <VStack p={5} spacing={3}>
+    <RemixLink to="/">
+      <Image
+        boxSize="50px"
+        objectFit="contain"
+        src="/android-chrome-192x192.png"
+        alt="Writter Logo"
+        transition="opacity 0.2s ease-in-out"
+        _hover={{ opacity: 0.8 }}
+      />
+    </RemixLink>
+
+    <ColorModeToggle />
 
     {user && (
       <Button
@@ -90,5 +91,5 @@ export const Navigation: FunctionComponent<NavigationProps> = ({ user }) => (
         Sign out
       </Button>
     )}
-  </Stack>
+  </VStack>
 )
