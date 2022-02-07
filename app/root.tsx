@@ -3,6 +3,7 @@ import { Box, ChakraProvider, Heading } from '@chakra-ui/react'
 import {
   Links,
   LiveReload,
+  LoaderFunction,
   Meta,
   Outlet,
   Scripts,
@@ -11,26 +12,34 @@ import {
   useLoaderData,
 } from 'remix'
 
+import { authenticator } from './services/auth.server'
+
 import type { MetaFunction } from 'remix'
 import { theme } from '~/chakra-ui'
+import { Layout } from '~/components'
 
 export const meta: MetaFunction = () => ({
   title: 'Writter Root',
 })
 
-export async function loader() {
+export const loader: LoaderFunction = async ({ request }) => {
+  const user = await authenticator.isAuthenticated(request)
+
   return {
-    ENV: {
-      KONTENBASE_API_KEY: process.env.KONTENBASE_API_KEY,
-    },
+    user,
+    ENV: { KONTENBASE_API_KEY: process.env.KONTENBASE_API_KEY },
   }
 }
 
 export default function App() {
+  const data = useLoaderData()
+
   return (
     <Document>
       <ChakraProvider theme={theme}>
-        <Outlet />
+        <Layout data={data}>
+          <Outlet />
+        </Layout>
       </ChakraProvider>
     </Document>
   )
