@@ -4,7 +4,7 @@ import { json, LoaderFunction, MetaFunction, useLoaderData } from 'remix'
 
 import { Container } from '~/components'
 import { WreetCardDetailed } from '~/features'
-import { kontenbase } from '~/lib'
+import { kontenbaseServer } from '~/lib'
 import { getTrimmedWreet, getUserName } from '~/utils'
 
 interface UserWreetIdProps {}
@@ -21,7 +21,7 @@ export const meta: MetaFunction = ({ data }) => {
 }
 
 export const loader: LoaderFunction = async ({ params }) => {
-  const { data, error } = await kontenbase
+  const { data, error } = await kontenbaseServer
     .service('wreets')
     .getById(params?.wreetId as string)
 

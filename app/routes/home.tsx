@@ -4,7 +4,7 @@ import { json, LoaderFunction, MetaFunction, useLoaderData } from 'remix'
 
 import { Container } from '~/components'
 import { WreetsTimeline } from '~/features'
-import { kontenbase } from '~/lib'
+import { kontenbaseServer } from '~/lib'
 
 interface HomeProps {}
 
@@ -13,7 +13,7 @@ export const meta: MetaFunction = () => ({
 })
 
 export const loader: LoaderFunction = async () => {
-  const { data, error } = await kontenbase.service('wreets').find()
+  const { data, error } = await kontenbaseServer.service('wreets').find()
 
   if (error) {
     return json({ error })

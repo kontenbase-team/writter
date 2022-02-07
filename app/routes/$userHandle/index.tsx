@@ -3,7 +3,7 @@ import { json, LoaderFunction, MetaFunction, useLoaderData } from 'remix'
 
 import { Container } from '~/components'
 import { UserProfile } from '~/features'
-import { kontenbase } from '~/lib'
+import { kontenbaseServer } from '~/lib'
 import { getUserName } from '~/utils'
 
 interface UserHandlePageProps {}
@@ -14,7 +14,7 @@ export const meta: MetaFunction = ({ data }) => ({
 
 export const loader: LoaderFunction = async ({ params }) => {
   try {
-    const { data, error } = await kontenbase.service('Users').find({
+    const { data, error } = await kontenbaseServer.service('Users').find({
       where: { handle: params?.userHandle as string },
     })
     if (error) {
