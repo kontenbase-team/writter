@@ -5,9 +5,10 @@ import { Form } from 'remix'
 interface WreetComposerProps {}
 
 export const WreetComposer: FunctionComponent<WreetComposerProps> = () => (
-  <Form>
+  <Form method="post" action="/wreet">
     <Stack p={5} align="flex-end">
       <Textarea
+        name="content"
         isRequired
         placeholder="What's happening?"
         variant="unstyled"

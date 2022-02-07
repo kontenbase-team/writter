@@ -21,15 +21,17 @@ export default function Index() {
   const { user } = useLoaderData()
 
   const buttonLinks = [
+    { to: '/about', text: 'About' },
     { to: '/signup', text: 'Sign Up' },
     { to: '/signin', text: 'Sign In' },
-    { to: '/about', text: 'About' },
   ]
 
   const buttonLinksAuthenticated = [
-    { to: '/signout', text: 'Sign Out' },
+    { to: '/wreet', text: 'Wreet' },
     { to: '/home', text: 'Home' },
+    { to: '/profile', text: 'Profile' },
     { to: '/about', text: 'About' },
+    { to: '/signout', text: 'Sign Out' },
   ]
 
   return (
