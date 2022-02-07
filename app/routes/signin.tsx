@@ -5,6 +5,7 @@ import { ActionFunction, json, MetaFunction } from 'remix'
 
 import { Container, Link } from '~/components'
 import { SignInForm } from '~/features'
+import { useAuthorized } from '~/hooks'
 import { kontenbaseServer } from '~/lib'
 
 interface SignInProps {}
@@ -32,18 +33,22 @@ export const action: ActionFunction = async ({ request }) => {
   return json(null)
 }
 
-const SignUp: FunctionComponent<SignInProps> = () => (
-  <Container headingText="Sign In">
-    <Stack p={5} spacing={5}>
-      <Heading as="h2" size="lg">
-        Sign in to your Writter account
-      </Heading>
-      <SignInForm />
-      <Text>
-        New here? <Link to="/signup">Sign up</Link>
-      </Text>
-    </Stack>
-  </Container>
-)
+const SignIn: FunctionComponent<SignInProps> = () => {
+  useAuthorized()
 
-export default SignUp
+  return (
+    <Container headingText="Sign In">
+      <Stack p={5} spacing={5}>
+        <Heading as="h2" size="lg">
+          Sign in to your Writter account
+        </Heading>
+        <SignInForm />
+        <Text>
+          New here? <Link to="/signup">Sign up</Link>
+        </Text>
+      </Stack>
+    </Container>
+  )
+}
+
+export default SignIn

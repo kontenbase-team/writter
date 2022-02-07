@@ -13,6 +13,8 @@ import {
 
 import type { MetaFunction } from 'remix'
 import { theme } from '~/chakra-ui'
+import { KontenbaseProvider } from '~/context'
+import { kontenbaseClient } from '~/lib'
 
 export const meta: MetaFunction = () => ({
   title: 'Writter Root',
@@ -30,7 +32,9 @@ export default function App() {
   return (
     <Document>
       <ChakraProvider theme={theme}>
-        <Outlet />
+        <KontenbaseProvider client={kontenbaseClient}>
+          <Outlet />
+        </KontenbaseProvider>
       </ChakraProvider>
     </Document>
   )

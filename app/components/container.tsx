@@ -1,6 +1,9 @@
+/* eslint-disable react/jsx-fragments */
+/* eslint-disable react/jsx-no-useless-fragment */
 import {
   ArrowBackIcon,
   EditIcon,
+  LockIcon,
   SettingsIcon,
   TimeIcon,
   UnlockIcon,
@@ -17,14 +20,14 @@ import {
   Stack,
   useColorModeValue,
   useMediaQuery,
-  VStack,
   Tooltip,
   Flex,
 } from '@chakra-ui/react'
-import { FunctionComponent } from 'react'
+import { Fragment, FunctionComponent, useEffect } from 'react'
 import { Link as RemixLink, useNavigate } from 'remix'
 
 import { ColorModeToggle } from '~/components'
+import { useAuth, useNotAuthorized, useUser } from '~/hooks'
 
 interface ContainerProps {
   isBackDisabled?: boolean
@@ -37,20 +40,26 @@ export const Container: FunctionComponent<ContainerProps> = ({
   headingText,
   children,
 }) => {
-  const navigate = useNavigate()
+  const user = useUser()
 
+  const navigate = useNavigate()
   const navigateBack = () => {
     navigate(-1)
   }
 
   const [isMobile] = useMediaQuery('(max-width: 1024px)')
-
   const borderColor = useColorModeValue('gray.300', 'gray.600')
+
+  useEffect(() => {
+    if (user) {
+      console.log('User changed')
+    }
+  }, [user])
 
   return (
     <ChakraContainer px={0} maxWidth="720px">
       <Flex align="flex-start">
-        {isMobile ? <NavigationSidebarMobile /> : <NavigationSidebar />}
+        <NavigationSidebar isMobile={isMobile} user={user} />
 
         <Box
           borderTop={0}
@@ -82,7 +91,13 @@ export const Container: FunctionComponent<ContainerProps> = ({
   )
 }
 
-export const NavigationSidebar = () => (
+export const NavigationSidebar = ({
+  isMobile,
+  user,
+}: {
+  isMobile: boolean
+  user?: any
+}) => (
   <Stack p={5} spacing={3}>
     <HStack spacing={5} justify="space-between">
       <RemixLink to="/">
@@ -96,109 +111,123 @@ export const NavigationSidebar = () => (
       <ColorModeToggle />
     </HStack>
 
-    <Button
-      as={RemixLink}
-      to="/home"
-      leftIcon={<TimeIcon />}
-      variant="ghost"
-      borderRadius="full"
-    >
-      Home
-    </Button>
-
-    <Button
-      as={RemixLink}
-      to="/profile"
-      leftIcon={<SettingsIcon />}
-      variant="ghost"
-      borderRadius="full"
-    >
-      Profile
-    </Button>
-
-    <Button
-      as={RemixLink}
-      to="/signin"
-      leftIcon={<UnlockIcon />}
-      variant="solid"
-      colorScheme="red"
-      borderRadius="full"
-    >
-      Sign In
-    </Button>
-
-    <Button
-      as={RemixLink}
-      to="/wreet"
-      leftIcon={<EditIcon />}
-      variant="solid"
-      colorScheme="red"
-      borderRadius="full"
-    >
-      Wreet
-    </Button>
-  </Stack>
-)
-
-export const NavigationSidebarMobile = () => (
-  <VStack p={3} spacing={3} align="center">
-    <Tooltip label="Writter" aria-label="Writter">
-      <RemixLink to="/">
-        <Image
-          boxSize="40px"
-          objectFit="contain"
-          src="/android-chrome-192x192.png"
-          alt="Writter Logo"
-        />
-      </RemixLink>
-    </Tooltip>
-
-    <ColorModeToggle />
-
-    <Tooltip label="Home">
-      <IconButton
+    {!isMobile ? (
+      <Button
         as={RemixLink}
         to="/home"
-        icon={<TimeIcon />}
+        leftIcon={<TimeIcon />}
         variant="ghost"
         borderRadius="full"
-        aria-label="Go to Home"
-      />
-    </Tooltip>
+      >
+        Home
+      </Button>
+    ) : (
+      <Tooltip label="Home">
+        <IconButton
+          as={RemixLink}
+          to="/home"
+          icon={<TimeIcon />}
+          variant="ghost"
+          borderRadius="full"
+          aria-label="Go to Home"
+        />
+      </Tooltip>
+    )}
 
-    <Tooltip label="Profile">
-      <IconButton
-        as={RemixLink}
-        to="/profile"
-        icon={<SettingsIcon />}
-        variant="ghost"
-        borderRadius="full"
-        aria-label="Go to My Profile"
-      />
-    </Tooltip>
+    {user && (
+      <Fragment>
+        {!isMobile ? (
+          <Button
+            as={RemixLink}
+            to="/profile"
+            leftIcon={<SettingsIcon />}
+            variant="ghost"
+            borderRadius="full"
+          >
+            Profile
+          </Button>
+        ) : (
+          <Tooltip label="Profile">
+            <IconButton
+              as={RemixLink}
+              to="/profile"
+              icon={<SettingsIcon />}
+              variant="ghost"
+              borderRadius="full"
+              aria-label="Go to My Profile"
+            />
+          </Tooltip>
+        )}
+      </Fragment>
+    )}
 
-    <Tooltip label="Sign In">
-      <IconButton
+    {user && (
+      <Fragment>
+        {!isMobile ? (
+          <Button
+            as={RemixLink}
+            to="/wreet"
+            leftIcon={<EditIcon />}
+            variant="solid"
+            colorScheme="red"
+            borderRadius="full"
+          >
+            Wreet
+          </Button>
+        ) : (
+          <Tooltip label="Wreet">
+            <IconButton
+              as={RemixLink}
+              to="/wreet"
+              icon={<EditIcon />}
+              variant="solid"
+              borderRadius="full"
+              colorScheme="red"
+              aria-label="Wreet"
+            />
+          </Tooltip>
+        )}
+      </Fragment>
+    )}
+
+    {!user && (
+      <Button
         as={RemixLink}
         to="/signin"
-        icon={<UnlockIcon />}
+        leftIcon={<UnlockIcon />}
         variant="solid"
         colorScheme="red"
         borderRadius="full"
-        aria-label="Sign in"
-      />
-    </Tooltip>
+      >
+        Sign In
+      </Button>
+    )}
 
-    <Tooltip label="Wreet">
-      <IconButton
-        as={RemixLink}
-        to="/wreet"
-        icon={<EditIcon />}
-        variant="solid"
-        colorScheme="red"
-        borderRadius="full"
-        aria-label="Compose a new Wreet"
-      />
-    </Tooltip>
-  </VStack>
+    {user && (
+      <Fragment>
+        {!isMobile ? (
+          <Button
+            as={RemixLink}
+            to="/signout"
+            leftIcon={<LockIcon />}
+            variant="outline"
+            borderRadius="full"
+          >
+            Sign Out
+          </Button>
+        ) : (
+          <Tooltip label="Sign out">
+            <IconButton
+              as={RemixLink}
+              to="/signout"
+              icon={<LockIcon />}
+              variant="outline"
+              borderRadius="full"
+              aria-label="Sign out"
+            />
+          </Tooltip>
+        )}
+      </Fragment>
+    )}
+  </Stack>
 )

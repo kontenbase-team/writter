@@ -9,7 +9,7 @@ import {
   useToast,
 } from '@chakra-ui/react'
 import { FunctionComponent, SyntheticEvent, useState } from 'react'
-import { Form, useNavigate } from 'remix'
+import { useNavigate } from 'remix'
 
 import { kontenbaseClient } from '~/lib'
 
@@ -53,7 +53,7 @@ export const SignInForm: FunctionComponent<SignInFormProps> = () => {
   }
 
   return (
-    <Form method="post" action="/signin" onSubmit={handleSignIn}>
+    <form method="post" action="/signin" onSubmit={handleSignIn}>
       <Stack>
         <FormControl isRequired>
           <FormLabel htmlFor="email">Email address</FormLabel>
@@ -81,6 +81,6 @@ export const SignInForm: FunctionComponent<SignInFormProps> = () => {
           Sign In
         </Button>
       </Stack>
-    </Form>
+    </form>
   )
 }
