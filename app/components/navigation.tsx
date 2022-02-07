@@ -29,15 +29,17 @@ export const Navigation: FunctionComponent<NavigationProps> = ({ user }) => (
       <ColorModeToggle />
     </HStack>
 
-    <Button
-      as={RemixLink}
-      to="/home"
-      leftIcon={<TimeIcon />}
-      variant="ghost"
-      borderRadius="full"
-    >
-      Home
-    </Button>
+    {user && (
+      <Button
+        as={RemixLink}
+        to="/home"
+        leftIcon={<TimeIcon />}
+        variant="ghost"
+        borderRadius="full"
+      >
+        Home
+      </Button>
+    )}
 
     {user && (
       <Button
