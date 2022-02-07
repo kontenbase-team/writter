@@ -21,7 +21,7 @@ authenticator.use(
     invariant(typeof password === 'string', 'password must be a string')
     invariant(password.length > 0, 'password must not be empty')
 
-    const { user, error } = await kontenbaseServer.auth.login({
+    const { user, token, error } = await kontenbaseServer.auth.login({
       email: email as string,
       password: password as string,
     })
@@ -29,10 +29,10 @@ authenticator.use(
     // The type of this user must match the type you pass to the Authenticator
     // The strategy will automatically inherit the type if you instantiate
     // directly inside the `use` method
-    if (error || !user) {
+    if (error || !user || !token) {
       throw error
     }
-    return user
+    return { ...user, token }
   }),
   // Each strategy has a name and can be changed to use another one
   // same strategy multiple times, especially useful for the OAuth2 strategy.

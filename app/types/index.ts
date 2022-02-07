@@ -13,6 +13,7 @@ export type TUser = {
   lastName?: string
   name?: string
   handle?: string
+  token?: string
 }
 
 export type TDate = string | number | dayjs.Dayjs | Date | null | undefined
