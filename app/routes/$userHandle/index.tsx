@@ -1,3 +1,4 @@
+import { Box } from '@chakra-ui/react'
 import { FunctionComponent } from 'react'
 import { json, LoaderFunction, MetaFunction, useLoaderData } from 'remix'
 
@@ -13,20 +14,11 @@ export const meta: MetaFunction = ({ data }) => ({
 })
 
 export const loader: LoaderFunction = async ({ params }) => {
-  try {
-    const { data, error } = await kontenbaseServer.service('Users').find({
-      where: { handle: params?.userHandle as string },
-    })
-    if (error) {
-      return json({ error }, { status: 404 })
-    }
-    return json({
-      data: data?.[0],
-      error,
-    })
-  } catch (error) {
-    return json({ error }, { status: 500 })
-  }
+  const { data: users, error } = await kontenbaseServer.service('Users').find({
+    where: { handle: params?.userHandle as string },
+  })
+  if (error) return json({ error }, { status: 404 })
+  return json({ data: users?.[0], error })
 }
 
 const UserHandlePage: FunctionComponent<UserHandlePageProps> = () => {
@@ -35,7 +27,11 @@ const UserHandlePage: FunctionComponent<UserHandlePageProps> = () => {
   return (
     <Container headingText={getUserName(data)}>
       {data && <UserProfile user={data} />}
-      {error && <p>Error: User Profile {error?.message}</p>}
+      {error && (
+        <Box p={3}>
+          <p>Error: User Profile {error?.message}</p>
+        </Box>
+      )}
     </Container>
   )
 }
