@@ -1,6 +1,6 @@
 # Writter
 
-A Twitter clone with [Remix](https://remix.run/docs) and [Kontenbase](https://kontenbase.com)
+A Twitter clone with [Remix](https://remix.run/docs) and [Kontenbase](https://kontenbase.com). Styled with [Chakra UI](https://chakra-ui.com).
 
 [![MIT License][license-badge]][license]
 
@@ -11,15 +11,17 @@ A Twitter clone with [Remix](https://remix.run/docs) and [Kontenbase](https://ko
 
 ## Features
 
-### What's ready
+### What's implemented
 
 - Index page
 - Home with timeline of Wreets (Tweets)
 - Link to go to Wreet page
-- View Wreet page
+- View Wreet content page
 - View user profile
+- Create a new Wreet
+- Delete owned Wreet
 
-### What's not included
+### What's not implemented yet
 
 - Follow other users
 - Filtered Wreet timeline
@@ -31,18 +33,20 @@ A Twitter clone with [Remix](https://remix.run/docs) and [Kontenbase](https://ko
 
 ## Tech Stack
 
-- React
+- React + Remix + React Router
   - HTML
   - CSS
   - JavaScript
   - TypeScript
-- Remix
-  - React Router
-- Stitches
-- Radix UI
-  - Radix Colors
-- Vercel
-- Cloudflare DNS
+- Styling options:
+  - Chakra UI
+  - Stitches + Radix UI + Radix Colors
+- Deployment options:
+  - Vercel
+- Extras:
+  - Prettier
+  - ESLint
+  - Cloudflare DNS
 
 ## Deployment
 
