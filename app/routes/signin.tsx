@@ -4,6 +4,7 @@ import {
   ActionFunction,
   LoaderFunction,
   MetaFunction,
+  redirect,
   useTransition,
 } from 'remix'
 
@@ -18,25 +19,17 @@ export const meta: MetaFunction = () => ({
 })
 
 export const action: ActionFunction = async ({ request }) => {
-  // Use `authenticator.authenticate method`
-  // we call the method with the name of the strategy we want to use and the
-  // request object, optionally we pass an object with the URLs we want the user
-  // to be redirected to after a success or a failure
-  const resultAction = await authenticator.authenticate('user-pass', request, {
+  const user = await authenticator.authenticate('user-pass', request, {
     successRedirect: '/home',
     failureRedirect: '/signin',
   })
-  return resultAction
+  return user
 }
 
 export const loader: LoaderFunction = async ({ request }) => {
-  // Check if the user is authenticated with `authenticator.isAuthenticated`
-  // and redirect if it is or return null if it's not
-  // If the user is already authenticated redirect directly
-  const resultLoader = await authenticator.isAuthenticated(request, {
-    successRedirect: '/signin',
-  })
-  return resultLoader
+  const user = await authenticator.isAuthenticated(request)
+  if (user) redirect('/')
+  return null
 }
 
 const SignIn: FunctionComponent<SignInProps> = () => {
