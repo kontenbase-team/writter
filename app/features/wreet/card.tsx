@@ -1,3 +1,5 @@
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable react/no-array-index-key */
 /* eslint-disable no-nested-ternary */
 import {
   chakra,
@@ -29,35 +31,40 @@ interface WreetCardDetailedProps {
   isLink?: boolean
 }
 
+interface WreetContentProps {
+  content: string
+  fontSize?: string
+}
+
 export const WreetCard: FunctionComponent<WreetCardProps> = ({
   wreet,
   isLink,
 }) => {
-  const user = wreet?.createdBy
+  const wreetOwner = wreet?.createdBy
 
   return (
     <Box
       p={5}
       transition="background 0.25s ease-in-out"
-      _hover={{
-        bg: isLink && 'gray.700',
-      }}
+      _hover={{ bg: isLink && 'gray.700' }}
     >
       <HStack spacing={5} align="flex-start">
-        <Avatar name={getUserName(user)} />
+        <Avatar size="md" name={getUserName(wreetOwner)} />
         <Box>
-          <Flex flexWrap="wrap" gap={[0, 3]}>
+          <Flex flexWrap="wrap" gap={[0, 1, 3]}>
             <chakra.span size="sm" fontWeight="bold">
-              {getUserName(user)}
+              {getUserName(wreetOwner)}
             </chakra.span>
             <chakra.span size="sm" color="gray.500">
-              <span>@{user?.handle}</span>
+              <span>@{wreetOwner?.handle}</span>
               <span> · </span>
               <span>{getRelativeDate(wreet?.createdAt)}</span>
             </chakra.span>
           </Flex>
 
-          <Text mt={1}>{wreet?.content}</Text>
+          <Box mt={2}>
+            <WreetContent content={wreet?.content} />
+          </Box>
         </Box>
       </HStack>
     </Box>
@@ -84,24 +91,19 @@ export const WreetCardDetailed: FunctionComponent<WreetCardDetailedProps> = ({
         as={RemixLink}
         to={`/${getUserHandle(wreetOwner)}`}
         gap={3}
+        align="center"
         flexWrap="wrap"
         transition="opacity 0.25s ease-in-out"
         _hover={{ opacity: 0.8 }}
       >
-        <Avatar name={getUserName(wreetOwner)} />
-        <Stack spacing={0}>
-          <chakra.span size="sm" fontWeight="bold">
-            {getUserName(wreetOwner)}
-          </chakra.span>
-          <chakra.span size="sm" color="gray.500">
-            @{wreetOwner?.handle}
-          </chakra.span>
+        <Avatar size="lg" name={getUserName(wreetOwner)} />
+        <Stack spacing={0} fontSize="xl">
+          <chakra.span fontWeight="bold">{getUserName(wreetOwner)}</chakra.span>
+          <chakra.span color="gray.500">@{wreetOwner?.handle}</chakra.span>
         </Stack>
       </Flex>
 
-      <Text mt={1} fontSize="3xl">
-        {wreet?.content}
-      </Text>
+      <WreetContent content={wreet?.content} fontSize="2xl" />
 
       <HStack>
         <ChakraLink as={RemixLink} to={getWreetURL(wreet)}>
@@ -133,3 +135,17 @@ export const WreetCardDetailed: FunctionComponent<WreetCardDetailedProps> = ({
     </Stack>
   )
 }
+
+export const WreetContent: FunctionComponent<WreetContentProps> = ({
+  content,
+  fontSize = 'lg',
+}) => (
+  <Box className="wreet-content" fontSize={fontSize}>
+    {content.split('\n').map((sentence, key) => {
+      if (sentence?.length) {
+        return <Text key={key}>{sentence}</Text>
+      }
+      return <Text key={key} py={3} />
+    })}
+  </Box>
+)
