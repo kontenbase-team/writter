@@ -1,3 +1,4 @@
+/* eslint-disable react/no-danger */
 import { Box, ChakraProvider, Heading } from '@chakra-ui/react'
 import {
   Links,
@@ -7,6 +8,7 @@ import {
   Scripts,
   ScrollRestoration,
   useCatch,
+  useLoaderData,
 } from 'remix'
 
 import type { MetaFunction } from 'remix'
@@ -15,6 +17,14 @@ import { theme } from '~/chakra-ui'
 export const meta: MetaFunction = () => ({
   title: 'Writter Root',
 })
+
+export async function loader() {
+  return {
+    ENV: {
+      KONTENBASE_API_KEY: process.env.KONTENBASE_API_KEY,
+    },
+  }
+}
 
 export default function App() {
   return (
@@ -33,6 +43,8 @@ export function Document({
   title?: string
   children: any
 }) {
+  const data = useLoaderData()
+
   return (
     <html lang="en">
       <head>
@@ -46,6 +58,11 @@ export function Document({
       <body>
         {children}
 
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.ENV = ${JSON.stringify(data.ENV)}`,
+          }}
+        />
         <ScrollRestoration />
         <Scripts />
         {process.env.NODE_ENV === 'development' && <LiveReload />}
