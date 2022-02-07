@@ -1,6 +1,11 @@
 import { Heading, Stack, Text } from '@chakra-ui/react'
 import { FunctionComponent } from 'react'
-import { ActionFunction, LoaderFunction, MetaFunction } from 'remix'
+import {
+  ActionFunction,
+  LoaderFunction,
+  MetaFunction,
+  useTransition,
+} from 'remix'
 
 import { Container, Link } from '~/components'
 import { SignInForm } from '~/features'
@@ -34,20 +39,24 @@ export const loader: LoaderFunction = async ({ request }) => {
   return resultLoader
 }
 
-const SignIn: FunctionComponent<SignInProps> = () => (
-  <Container headingText="Sign In">
-    <Stack p={5} spacing={5}>
-      <Heading as="h2" size="lg">
-        Sign in to your Writter account
-      </Heading>
+const SignIn: FunctionComponent<SignInProps> = () => {
+  const transition = useTransition()
 
-      <SignInForm />
+  return (
+    <Container headingText="Sign In">
+      <Stack p={5} spacing={5}>
+        <Heading as="h2" size="lg">
+          Sign in to your Writter account
+        </Heading>
 
-      <Text>
-        New here? <Link to="/signup">Sign up</Link>
-      </Text>
-    </Stack>
-  </Container>
-)
+        <SignInForm transition={transition} />
+
+        <Text>
+          New here? <Link to="/signup">Sign up</Link>
+        </Text>
+      </Stack>
+    </Container>
+  )
+}
 
 export default SignIn

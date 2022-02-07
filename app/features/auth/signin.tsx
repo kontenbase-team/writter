@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import {
   Button,
   FormControl,
@@ -9,9 +10,13 @@ import {
 import { FunctionComponent } from 'react'
 import { Form } from 'remix'
 
-interface SignInFormProps {}
+interface SignInFormProps {
+  transition: any
+}
 
-export const SignInForm: FunctionComponent<SignInFormProps> = () => (
+export const SignInForm: FunctionComponent<SignInFormProps> = ({
+  transition,
+}) => (
   <Form method="post" action="/signin">
     <Stack>
       <FormControl isRequired>
@@ -34,8 +39,18 @@ export const SignInForm: FunctionComponent<SignInFormProps> = () => (
       <Button
         type="submit"
         colorScheme="red"
-        // isLoading={true}
-        loadingText="Signing in..."
+        isLoading={
+          transition.state === 'submitting'
+            ? true
+            : transition.state === 'loading'
+        }
+        loadingText={
+          transition.state === 'submitting'
+            ? 'Signing in...'
+            : transition.state === 'loading'
+            ? 'Signed in!'
+            : 'Sign in'
+        }
       >
         Sign In
       </Button>
