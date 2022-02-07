@@ -23,7 +23,6 @@ export default function Index() {
   const buttonLinks = [
     { to: '/signup', text: 'Sign Up' },
     { to: '/signin', text: 'Sign In' },
-    { to: '/home', text: 'Home' },
     { to: '/about', text: 'About' },
   ]
 
