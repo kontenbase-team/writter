@@ -4,7 +4,6 @@ import {
   ActionFunction,
   LoaderFunction,
   MetaFunction,
-  redirect,
   useTransition,
 } from 'remix'
 
@@ -27,8 +26,9 @@ export const action: ActionFunction = async ({ request }) => {
 }
 
 export const loader: LoaderFunction = async ({ request }) => {
-  const user = await authenticator.isAuthenticated(request)
-  if (user) redirect('/')
+  await authenticator.isAuthenticated(request, {
+    successRedirect: '/home',
+  })
   return null
 }
 
