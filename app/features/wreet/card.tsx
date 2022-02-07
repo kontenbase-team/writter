@@ -7,9 +7,10 @@ import {
   HStack,
   Stack,
   Flex,
+  Button,
 } from '@chakra-ui/react'
 import { FunctionComponent } from 'react'
-import { Link as RemixLink } from 'remix'
+import { Form, Link as RemixLink } from 'remix'
 
 import { getCompleteDateTime, getRelativeDate } from '~/lib'
 import type { TWreet } from '~/types'
@@ -100,6 +101,12 @@ export const WreetCardDetailed: FunctionComponent<WreetCardDetailedProps> = ({
         <ChakraLink as={RemixLink} to={getWreetURL(wreet)}>
           <chakra.span>{getCompleteDateTime(wreet?.createdAt)}</chakra.span>
         </ChakraLink>
+        <Form method="post">
+          <input type="hidden" name="_method" value="delete" />
+          <Button type="submit" colorScheme="red" variant="ghost" size="xs">
+            Delete
+          </Button>
+        </Form>
       </HStack>
     </Stack>
   )
