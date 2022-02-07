@@ -17,14 +17,11 @@ export const loader: LoaderFunction = async ({ request }) => {
   const user = await authenticator.isAuthenticated(request, {
     failureRedirect: '/',
   })
-
   const { data: wreets, error } = await kontenbaseServer
     .service('wreets')
     .find()
 
-  if (error) {
-    return json({ error })
-  }
+  if (error) return json({ error }, { status: 404 })
   return json({ user, wreets })
 }
 
