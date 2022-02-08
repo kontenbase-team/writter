@@ -70,11 +70,7 @@ export const SignUpForm: FunctionComponent<SignUpFormProps> = ({
         <Button
           type="submit"
           colorScheme="green"
-          isLoading={
-            transition.state === 'submitting'
-              ? true
-              : transition.state === 'loading'
-          }
+          isLoading={transition.state === 'submitting'}
           loadingText={
             transition.state === 'submitting'
               ? 'Creating account...'

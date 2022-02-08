@@ -13,7 +13,7 @@ A Twitter clone with [Remix](https://remix.run/docs) and [Kontenbase](https://ko
 
 ### What's implemented
 
-- Index page
+- Landing page
 - Home with timeline of Wreets (Tweets)
 - Link to go to Wreet page
 - View Wreet content page
