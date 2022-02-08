@@ -18,6 +18,7 @@ export const SignInForm: FunctionComponent<SignInFormProps> = ({
   transition,
 }) => (
   <Form method="post" action="/signin">
+    <input type="hidden" name="_method" value="signin" />
     <Stack>
       <FormControl isRequired>
         <FormLabel htmlFor="email">Email address</FormLabel>
@@ -38,7 +39,7 @@ export const SignInForm: FunctionComponent<SignInFormProps> = ({
 
       <Button
         type="submit"
-        colorScheme="red"
+        colorScheme="green"
         isLoading={
           transition.state === 'submitting'
             ? true
