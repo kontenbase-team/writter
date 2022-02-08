@@ -5,15 +5,7 @@ import {
   TimeIcon,
   UnlockIcon,
 } from '@chakra-ui/icons'
-import {
-  Image,
-  HStack,
-  Button,
-  Stack,
-  VStack,
-  Box,
-  chakra,
-} from '@chakra-ui/react'
+import { Image, Button, VStack, chakra } from '@chakra-ui/react'
 import { FunctionComponent } from 'react'
 import { Link as RemixLink } from 'remix'
 
