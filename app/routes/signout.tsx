@@ -36,6 +36,7 @@ const SignOut: FunctionComponent<SignOutProps> = () => {
   return (
     <Container headingText="Sign Out">
       <Form method="post" action="/signout">
+        <input type="hidden" name="_method" value="signout" />
         <Stack p={5}>
           <Text>
             Are you sure to sign out{' '}
