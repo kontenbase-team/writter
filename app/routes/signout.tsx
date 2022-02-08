@@ -1,17 +1,17 @@
-import { Button, Stack, Text } from '@chakra-ui/react'
+/* eslint-disable no-nested-ternary */
 import { FunctionComponent } from 'react'
 import {
   ActionFunction,
-  Form,
   json,
   LoaderFunction,
   MetaFunction,
   useLoaderData,
+  useTransition,
 } from 'remix'
 
 import { Container } from '~/components'
+import { SignOutForm } from '~/features'
 import { authenticator } from '~/services/auth.server'
-import { getUserName } from '~/utils'
 
 interface SignOutProps {}
 
@@ -32,24 +32,11 @@ export const loader: LoaderFunction = async ({ request }) => {
 
 const SignOut: FunctionComponent<SignOutProps> = () => {
   const { user } = useLoaderData()
+  const transition = useTransition()
 
   return (
     <Container headingText="Sign Out">
-      <Form method="post" action="/signout">
-        <input type="hidden" name="_method" value="signout" />
-        <Stack p={5}>
-          <Text>
-            Are you sure to sign out{' '}
-            <b>
-              {getUserName(user)} ({user.email})
-            </b>{' '}
-            from Writter?
-          </Text>
-          <Button type="submit" colorScheme="red">
-            Sign out
-          </Button>
-        </Stack>
-      </Form>
+      <SignOutForm user={user} transition={transition} />
     </Container>
   )
 }
