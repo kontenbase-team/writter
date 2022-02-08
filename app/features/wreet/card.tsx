@@ -11,6 +11,7 @@ import {
   Stack,
   Flex,
   Button,
+  useColorModeValue,
 } from '@chakra-ui/react'
 import { FunctionComponent } from 'react'
 import { Form, Link as RemixLink } from 'remix'
@@ -41,12 +42,13 @@ export const WreetCard: FunctionComponent<WreetCardProps> = ({
   isLink,
 }) => {
   const wreetOwner = wreet?.createdBy
+  const hoverBackground = useColorModeValue('gray.100', 'gray.700')
 
   return (
     <Box
       p={5}
       transition="background 0.25s ease-in-out"
-      _hover={{ bg: isLink && 'gray.700' }}
+      _hover={{ bg: isLink && hoverBackground }}
     >
       <HStack spacing={5} align="flex-start">
         <Avatar size="md" name={getUserName(wreetOwner)} />
