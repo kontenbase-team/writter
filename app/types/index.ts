@@ -13,6 +13,7 @@ export type TUser = {
   lastName?: string
   name?: string
   handle?: string
+  email?: string
   token?: string
 }
 
