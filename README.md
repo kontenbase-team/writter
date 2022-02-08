@@ -14,6 +14,11 @@ A Twitter clone with [Remix](https://remix.run/docs) and [Kontenbase](https://ko
 ### What's implemented
 
 - Landing page
+- Authentication/Authorization
+  - Sign up
+  - Sign in
+  - Sign out
+  - Permission of ownership
 - Home with timeline of Wreets (Tweets)
 - Link to go to Wreet page
 - View Wreet content page
