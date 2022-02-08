@@ -5,6 +5,7 @@ import {
   LoaderFunction,
   MetaFunction,
   redirect,
+  useTransition,
 } from 'remix'
 
 import { Container } from '~/components'
@@ -44,10 +45,14 @@ export const loader: LoaderFunction = async ({ request }) => {
   return json({ user })
 }
 
-const ComposeNewWreet: FunctionComponent<ComposeNewWreetProps> = () => (
-  <Container headingText="Compose">
-    <WreetComposer />
-  </Container>
-)
+const ComposeNewWreet: FunctionComponent<ComposeNewWreetProps> = () => {
+  const transition = useTransition()
+
+  return (
+    <Container headingText="Compose">
+      <WreetComposer transition={transition} />
+    </Container>
+  )
+}
 
 export default ComposeNewWreet

@@ -1,10 +1,15 @@
+/* eslint-disable no-nested-ternary */
 import { Button, Stack, Textarea } from '@chakra-ui/react'
 import { FunctionComponent } from 'react'
 import { Form } from 'remix'
 
-interface WreetComposerProps {}
+interface WreetComposerProps {
+  transition: any
+}
 
-export const WreetComposer: FunctionComponent<WreetComposerProps> = () => (
+export const WreetComposer: FunctionComponent<WreetComposerProps> = ({
+  transition,
+}) => (
   <Form method="post" action="/wreet">
     <Stack p={5} align="flex-end">
       <Textarea
@@ -15,7 +20,19 @@ export const WreetComposer: FunctionComponent<WreetComposerProps> = () => (
         fontSize="2xl"
         minHeight="150px"
       />
-      <Button type="submit" colorScheme="red" borderRadius="full">
+      <Button
+        type="submit"
+        colorScheme="red"
+        borderRadius="full"
+        isLoading={transition.state === 'submitting'}
+        loadingText={
+          transition.state === 'submitting'
+            ? 'Wreeting...'
+            : transition.state === 'loading'
+            ? 'Wreeted!'
+            : 'Wreet'
+        }
+      >
         Wreet
       </Button>
     </Stack>
