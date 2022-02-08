@@ -29,23 +29,43 @@ export const SignUpForm: FunctionComponent<SignUpFormProps> = ({
         <Stack direction={['column', 'row']}>
           <FormControl isRequired>
             <FormLabel htmlFor="firstName">First Name</FormLabel>
-            <Input name="firstName" type="text" placeholder="Ally" />
+            <Input
+              name="firstName"
+              type="text"
+              placeholder="Ally"
+              autoComplete="given-name"
+            />
           </FormControl>
 
           <FormControl isRequired>
             <FormLabel htmlFor="lastName">Last Name</FormLabel>
-            <Input name="lastName" type="text" placeholder="Gator" />
+            <Input
+              name="lastName"
+              type="text"
+              placeholder="Gator"
+              autoComplete="family-name"
+            />
           </FormControl>
         </Stack>
 
         <FormControl isRequired>
           <FormLabel htmlFor="handle">Handle / Username</FormLabel>
-          <Input name="handle" type="text" placeholder="allygator" />
+          <Input
+            name="handle"
+            type="text"
+            placeholder="allygator"
+            autoComplete="username"
+          />
         </FormControl>
 
         <FormControl isRequired>
           <FormLabel htmlFor="email">Email address</FormLabel>
-          <Input name="email" type="email" placeholder="yourname@domain.com" />
+          <Input
+            name="email"
+            type="email"
+            placeholder="yourname@domain.com"
+            autoComplete="email"
+          />
         </FormControl>
 
         <FormControl isRequired>
@@ -56,6 +76,7 @@ export const SignUpForm: FunctionComponent<SignUpFormProps> = ({
               pr="4.5rem"
               type={show ? 'text' : 'password'}
               placeholder="Enter password"
+              autoComplete="new-password"
             />
             <InputRightElement width="4.5rem">
               <Button h="1.75rem" size="sm" onClick={handleClickPassword}>

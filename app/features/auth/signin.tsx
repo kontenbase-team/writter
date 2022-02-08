@@ -22,7 +22,12 @@ export const SignInForm: FunctionComponent<SignInFormProps> = ({
     <Stack>
       <FormControl isRequired>
         <FormLabel htmlFor="email">Email address</FormLabel>
-        <Input name="email" type="email" placeholder="yourname@domain.com" />
+        <Input
+          name="email"
+          type="email"
+          placeholder="yourname@domain.com"
+          autoComplete="email"
+        />
       </FormControl>
 
       <FormControl isRequired>
@@ -32,6 +37,7 @@ export const SignInForm: FunctionComponent<SignInFormProps> = ({
           pr="4.5rem"
           type="password"
           placeholder="Enter password"
+          autoComplete="current-password"
         />
       </FormControl>
 
