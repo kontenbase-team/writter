@@ -14,8 +14,8 @@ const About: FunctionComponent<AboutProps> = () => (
   <Container headingText="About">
     <Stack p={5}>
       <Text>
-        Writter is a <Anchor href="https://twitter.com">Twitter</Anchor> clone
-        made with <Anchor href="https://remix.run">Remix</Anchor> and{' '}
+        🐦 Writter is a <Anchor href="https://twitter.com">Twitter</Anchor>{' '}
+        clone made with <Anchor href="https://remix.run">Remix</Anchor> and{' '}
         <Anchor href="https://kontenbase.com">Kontenbase</Anchor>
       </Text>
       <Text>

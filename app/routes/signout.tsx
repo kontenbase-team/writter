@@ -11,6 +11,7 @@ import {
 
 import { Container } from '~/components'
 import { authenticator } from '~/services/auth.server'
+import { getUserName } from '~/utils'
 
 interface SignOutProps {}
 
@@ -37,7 +38,11 @@ const SignOut: FunctionComponent<SignOutProps> = () => {
       <Form method="post" action="/signout">
         <Stack p={5}>
           <Text>
-            Are you sure to sign out <b>{user.email}</b> from Writter?
+            Are you sure to sign out{' '}
+            <b>
+              {getUserName(user)} ({user.email})
+            </b>{' '}
+            from Writter?
           </Text>
           <Button type="submit" colorScheme="red">
             Sign out

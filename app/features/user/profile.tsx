@@ -1,4 +1,10 @@
-import { Box, Avatar, Heading, Stack } from '@chakra-ui/react'
+import {
+  Box,
+  Avatar,
+  Heading,
+  Stack,
+  useColorModeValue,
+} from '@chakra-ui/react'
 import { FunctionComponent } from 'react'
 
 import type { TUser } from '~/types'
@@ -15,7 +21,11 @@ export const UserProfile: FunctionComponent<WreetCardProps> = ({ user }) => (
       <Heading as="h1" size="lg">
         {getUserName(user)}
       </Heading>
-      <Heading as="h2" size="md" color="gray.400">
+      <Heading
+        as="h2"
+        size="md"
+        color={useColorModeValue('gray.600', 'gray.400')}
+      >
         @{getUserHandle(user)}
       </Heading>
     </Stack>
