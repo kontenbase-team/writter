@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import {
   Button,
   FormControl,
@@ -11,14 +12,19 @@ import {
 import { FunctionComponent, useState } from 'react'
 import { Form } from 'remix'
 
-interface SignUpFormProps {}
+interface SignUpFormProps {
+  transition: any
+}
 
-export const SignUpForm: FunctionComponent<SignUpFormProps> = () => {
+export const SignUpForm: FunctionComponent<SignUpFormProps> = ({
+  transition,
+}) => {
   const [show, setShow] = useState(false)
   const handleClickPassword = () => setShow(!show)
 
   return (
-    <Form>
+    <Form method="post" action="/signup">
+      <input type="hidden" name="_method" value="signup" />
       <Stack>
         <Stack direction={['column', 'row']}>
           <FormControl isRequired>
@@ -31,6 +37,11 @@ export const SignUpForm: FunctionComponent<SignUpFormProps> = () => {
             <Input name="lastName" type="text" placeholder="Gator" />
           </FormControl>
         </Stack>
+
+        <FormControl isRequired>
+          <FormLabel htmlFor="handle">Handle / Username</FormLabel>
+          <Input name="handle" type="text" placeholder="allygator" />
+        </FormControl>
 
         <FormControl isRequired>
           <FormLabel htmlFor="email">Email address</FormLabel>
@@ -56,7 +67,22 @@ export const SignUpForm: FunctionComponent<SignUpFormProps> = () => {
 
         <Spacer />
 
-        <Button type="submit" colorScheme="red">
+        <Button
+          type="submit"
+          colorScheme="green"
+          isLoading={
+            transition.state === 'submitting'
+              ? true
+              : transition.state === 'loading'
+          }
+          loadingText={
+            transition.state === 'submitting'
+              ? 'Creating account...'
+              : transition.state === 'loading'
+              ? 'Created account!'
+              : 'Create account'
+          }
+        >
           Create Account
         </Button>
       </Stack>
