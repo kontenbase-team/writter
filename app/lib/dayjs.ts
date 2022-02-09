@@ -21,16 +21,4 @@ export const getCompleteDate = (date: TDate) =>
 export const getCompleteDateTime = (date: TDate) =>
   dayjs(date).format('D MMMM YYYY · HH:mm')
 
-export const getDayPeriod = () => {
-  const hour = Number(dayjs().format('H'))
-  if (hour < 5) return 'dawn'
-  if (hour < 12) return 'morning'
-  if (hour < 17) return 'afternoon'
-  if (hour < 21) return 'evening'
-  if (hour < 24) return 'night'
-  return ''
-}
-
-export const getDayNamePeriod = () => `${getDayName()} ${getDayPeriod()}`
-
 export const getRelativeDate = (date: TDate) => dayjs().to(dayjs(date))

@@ -32,7 +32,11 @@ authenticator.use(
       if (error || !user || !token) {
         return { error }
       }
-      return { ...user, token }
+      // This will be the final user object
+      return {
+        ...user,
+        token,
+      }
     }
 
     if (formMethod === 'signup') {
