@@ -49,7 +49,7 @@ const ComposeNewWreet: FunctionComponent<ComposeNewWreetProps> = () => {
   const transition = useTransition()
 
   return (
-    <Container headingText="Compose">
+    <Container headingText="Compose new Wreet">
       <WreetComposer transition={transition} />
     </Container>
   )

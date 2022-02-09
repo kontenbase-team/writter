@@ -59,29 +59,34 @@ Here are the step by step guide to develop this app. You can also watch the [vid
 
 ### Backend with Kontenbase
 
-- Sign in and setup Kontenbase project
+- Sign in and setup a new Kontenbase Project
+- Know to get API Key from the Settings
+- Know to get API URL
+- Create a new private `wreets` service and customize it to have:
+  - `content`
+  - `createdAt`
+  - `createdBy`
 - Customize `users` service to have:
   - `handle`
   - `createdAt`
   - `createdBy`
-- Test to sign up or register new User.
-- Test to sign in or login to User.
-- Create `wreets` service and customize it to have:
-  - `content`
-  - `createdAt`
-  - `createdBy`
+- Test to sign up or register new User
+- Test to sign in or login to User
 - Test to create new Wreet
 - Test to get all Wreet
 - Test to get one Wreet by ID
 - Test to delete a Wreet
 - Check Kontenbase Docs
+  - Welcome
+  - Getting Started
+  - SDK
 
 ### Development with Remix
 
 - Generate React+Remix app with `create-remix`
   - `npx create-remix@latest`
-  - Setup `.env` `.env.example`
-  - Git ignore `.env` `.DS_Store`
+- Create a GitHub repo and push the repo
+- Setup `.env` `.env.example` and Git ignore `.env` `.DS_Store`
 - Setup `package.json`
   - name
   - description
@@ -94,10 +99,10 @@ Here are the step by step guide to develop this app. You can also watch the [vid
   - `npm install dotenv dayjs invariant remix-auth remix-auth-form @kontenbase/sdk framer-motion @chakra-ui/react @chakra-ui/icons @emotion/react @emotion/styled `
 - Install development dependencies
   - `npm install -D @types/invariant @typescript-eslint/eslint-plugin @typescript-eslint/parser prettier eslint eslint-config-airbnb eslint-config-prettier eslint-plugin-import" eslint-plugin-jsx-a11y eslint-plugin-react eslint-plugin-react-hooks eslint-plugin-unused-imports`
-- Setup ESLint and Prettier config.
-- Copy favicons assets and manifest.
-- Know that `api` folder only for `@remix-run/vercel`.
-- Setup `chakra-ui.ts` config file.
+- Setup ESLint and Prettier config
+- Copy favicons assets and manifest
+- Know that `api` folder only for `@remix-run/vercel`
+- Setup `chakra-ui.ts` config file
 - Setup `types`
 - Setup `components`
 - Setup `features`
