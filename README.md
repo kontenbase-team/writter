@@ -55,7 +55,7 @@ A Twitter clone with [Remix](https://remix.run/docs) and [Kontenbase](https://ko
 
 ## Guide
 
-Here are the step by step guide to develop this app. You can also watch the [video on YouTube](https://youtube.com)
+Here are the step by step guide to develop this app. You can also watch the [video on YouTube](https://youtu.be/_aYuP92rOAk)
 
 ### Backend with Kontenbase
 
