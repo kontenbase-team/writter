@@ -1,6 +1,8 @@
 # Writter
 
-A Twitter clone with [Remix](https://remix.run/docs) and [Kontenbase](https://kontenbase.com). Styled with [Chakra UI](https://chakra-ui.com).
+A Twitter clone with [Remix](https://remix.run/docs) and [Kontenbase](https://kontenbase.com).
+Styled with [Chakra UI](https://chakra-ui.com).
+Just a demo, not meant to be 100% complete.
 
 [![MIT License][license-badge]][license]
 
